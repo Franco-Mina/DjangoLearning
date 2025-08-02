@@ -18,13 +18,13 @@ monthly_challenges = {
 
 # Create your views here.
 
-def monthly_challenge_list(request):
-    month_list = monthly_challenges.keys()
-    text_list ="<ul>"
-    for month in month_list:
-        text_list += f"<li><a href={reverse("month-challenge", args=[month])}>{month}</a></li>"
-    text_list += "</ul>"
-    return HttpResponse(text_list)
+
+def index(request):
+    text_list = ""
+    for month in monthly_challenges.keys():
+        text_list += f"<li><a href={reverse("month-challenge", args=[month])}>{month.capitalize()}</a></li>"
+    return HttpResponse(f"<ul>{text_list}</ul>")
+
 
 def monthly_challenge_by_number(request, month):
     try:
